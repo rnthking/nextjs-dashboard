@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import { people } from "@/app/lib/data";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
-  const id = parseInt(params.id);
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const id = parseInt(searchParams.get("id") || "");
+
   const person = people.find((p) => p.id === id);
 
   if (!person) {
