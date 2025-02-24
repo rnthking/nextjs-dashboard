@@ -17,11 +17,11 @@ export async function fetchRevenue() {
     // Don't do this in production :)
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
-    console.log('Data fetch completed after 3 seconds.');
+    // console.log('Data fetch completed after 3 seconds.');
 
     return data;
   } catch (error) {
@@ -216,3 +216,16 @@ export async function fetchFilteredCustomers(query: string) {
     throw new Error('Failed to fetch customer table.');
   }
 }
+
+export interface Person {
+  id: number;
+  name: string;
+  age: number;
+  email: string;
+}
+
+export const people: Person[] = [
+  { id: 1, name: "张三", age: 25, email: "zhangsan@example.com" },
+  { id: 2, name: "李四", age: 30, email: "lisi@example.com" },
+  { id: 3, name: "王五", age: 28, email: "wangwu@example.com" },
+];
